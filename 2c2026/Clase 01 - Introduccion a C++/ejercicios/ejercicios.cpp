@@ -18,80 +18,98 @@
 // Ejercicio 1 — Hola, C++
 std::string saludo(const std::string &nombre, int edad) {
     // TODO: armar y devolver el saludo con el formato pedido.
-    (void)nombre;
-    (void)edad;
-    return "";
+    std::cout << "Hola " << nombre << " tenes " << edad << " años."<< std::endl;
+    return "Hola " + nombre + ", tenes " + std::to_string(edad) + " anios.";
 }
 
 
 // Ejercicio 2 — Par o impar
 bool esPar(int numero) {
     // TODO: devolver true si numero es par.
-    (void)numero;
+    if (numero % 2 == 0){
+        return true;
+    }
+
     return false;
 }
 
 
 // Ejercicio 3 — Tabla de multiplicar
 std::vector<int> tablaDeMultiplicar(int n) {
-    // TODO: llenar el vector con n*1, n*2, ..., n*10 y devolverlo.
-    (void)n;
-    return {};
+    std::vector<int> tabla(10);   // vector con 10 elementos, todos en 0
+    for (int i = 0; i < 10; i++) {
+        tabla[i] = n * (i + 1);   // asigno por posición
+    }
+    return tabla;
 }
 
 
 // Ejercicio 4 — esPrimo
 bool esPrimo(int n) {
-    // TODO: determinar si n es primo.
-    (void)n;
-    return false;
+    if (n < 2) {
+        return false;
+    }
+    for (int divisor = 2; divisor * divisor <= n; divisor++) {
+        if (n % divisor == 0) {
+            return false;
+        }
+    }
+    return true;
 }
 
 
 // Ejercicio 5 — swap por referencia
 void swap(int &a, int &b) {
-    // TODO: intercambiar los valores de a y b.
-    (void)a;
-    (void)b;
+    int aux = a;
+    a = b;
+    b = aux;
 }
-
 
 // Ejercicio 6 — Sobrecarga: maximo
 int maximo(int a, int b) {
-    // TODO: devolver el mayor entre a y b.
-    (void)a;
-    (void)b;
-    return 0;
+    if (a > b) {
+        return a;
+    }
+    return b;
 }
 
 double maximo(double a, double b) {
-    // TODO: devolver el mayor entre a y b.
-    (void)a;
-    (void)b;
-    return 0.0;
+    if (a > b) {
+        return a;
+    }
+    return b;
 }
 
 
 // Ejercicio 7 — Promedio de un arreglo
 double promedioArreglo(const int numeros[], int tamanio) {
-    // TODO: sumar los elementos y dividir por tamanio (ojo con la división entera).
-    (void)numeros;
-    (void)tamanio;
-    return 0.0;
+    int suma = 0;
+    for (int i = 0; i < tamanio; i++) {
+        suma += numeros[i];
+    }
+    return (double)suma / tamanio;
 }
 
 
 // Ejercicio 8 — vector de notas
 double promedio(const std::vector<double> &notas) {
-    // TODO: devolver el promedio de las notas.
-    (void)notas;
-    return 0.0;
+    double suma = 0.0;
+    double cantidad = 0.0;
+    for (double nota : notas) {
+        suma += nota;
+        cantidad += 1.0;
+    }
+    return suma / cantidad;
 }
-
+ 
 double maxima(const std::vector<double> &notas) {
-    // TODO: devolver la nota más alta.
-    (void)notas;
-    return 0.0;
+    double masAlta = notas[0];
+    for (double nota : notas) {
+        if (nota > masAlta) {
+            masAlta = nota;
+        }
+    }
+    return masAlta;
 }
 
 
