@@ -48,7 +48,22 @@ void ListaSimple::insertarAlInicio(int valor)
     // Casos a considerar:
     //   - La lista estaba vacía (hay que actualizar también `ultimo`)
     //   - La lista ya tenía elementos
-    (void)valor;
+    Nodo* nodoNuevo = new Nodo(valor); // creo e inicializo el nodo
+    //nodoNuevo es un puntero a un nodo
+    if (vacia()){
+        primero = nodoNuevo;
+        ultimo = nodoNuevo;
+        largo ++;
+        return ;
+
+    }
+
+    Nodo * siguiente = primero; //nuevo puntero (que se llama siguiente) a un nodo
+    primero = ultimo;
+    nodoNuevo -> siguiente = siguiente;
+    largo ++;
+    return;
+
 }
 
 // Ejercicio 2 — Insertar al final
