@@ -38,7 +38,15 @@ void PilaArreglo::redimensionar()
     // TODO: duplicar `capacidad`, reservar un arreglo nuevo con esa
     // capacidad, copiar los `cantidad` elementos existentes, liberar el
     // arreglo viejo y actualizar `datos`.
-    (void)capacidad; // Silencia warning hasta que implementes la función
+    capacidad = capacidad * 2;
+    int *nuevo = new int[capacidad]; // reservo uno nuevo con el doble de capacidad
+
+    for (int i = 0; i < cantidad; i++) {
+        nuevo[i] = datos[i];
+    }
+
+    delete[] datos;
+    datos = nuevo;
 }
 
 void PilaArreglo::push(int valor)
@@ -118,6 +126,9 @@ int ColaArreglo::dequeue()
     // circularmente ((frente + 1) % capacidad), decrementar `cantidad` y
     // devolver el valor guardado.
     // Precondición: !empty()
+    int valor = datos[frente];
+    frente = (frente + 1) % capacidad;
+    cantidad --;
     return 0;
 }
 
@@ -160,7 +171,9 @@ void PilaLista::push(int valor)
 {
     // TODO: crear un nuevo nodo cuyo `siguiente` sea el `tope` actual, y
     // hacer que ese nuevo nodo pase a ser el `tope`. Incrementar `cantidad`.
-    (void)valor;
+    Nodo* neuvo = new Nodo(valor, tope);
+    tope = nuevo;
+    cantidad ++;
 }
 
 int PilaLista::pop()
