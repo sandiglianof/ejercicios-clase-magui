@@ -31,14 +31,13 @@ ListaSimple::~ListaSimple()
 bool ListaSimple::vacia() const
 {
     // Ya está implementado: la lista está vacía si no tiene primer elemento.
-    return primero == nullptr;
-}
+    return false;
 
 // Devuelve la cantidad de elementos
 size_t ListaSimple::tamanio() const
 {
     // Ya está implementado: devolvemos el contador.
-    return largo;
+    return 0;
 }
 
 // Ejercicio 1 — Insertar al inicio
