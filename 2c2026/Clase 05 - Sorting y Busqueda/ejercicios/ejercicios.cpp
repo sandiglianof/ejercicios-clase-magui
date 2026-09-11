@@ -64,31 +64,43 @@ int busquedaLineal(const std::vector<int>& v, int buscado)
 // Ejercicio 5 — Búsqueda Binaria (iterativa)
 int busquedaBinaria(const std::vector<int>& v, int buscado)
 {
-    // TODO: implementar búsqueda binaria iterativa.
-    // Recordá:
-    //   - Mantener dos índices: izq y der
-    //   - Calcular medio = izq + (der - izq) / 2
-    //   - Comparar v[medio] con buscado y ajustar izq o der
-    //   - Terminar cuando izq > der (no encontrado) o cuando encontrás
-    // Precondición: el vector está ordenado.
-    (void)v;
-    (void)buscado;
+    int izq = 0;
+    int der = v.size() - 1;
+
+    while (izq <= der)
+    {
+        int medio = izq + (der - izq) / 2;
+        if (v[medio] == buscado)
+            return medio;
+        if (buscado < v[medio])
+            der = medio - 1;
+        else
+            izq = medio + 1;
+    }
+
     return -1;
 }
 
 // Ejercicio 6 — Búsqueda Binaria (recursiva)
 int busquedaBinariaRec(const std::vector<int>& v, int buscado, int izq, int der)
 {
-    // TODO: implementar búsqueda binaria recursiva.
-    // Caso base: izq > der => devolver -1 (no encontrado)
-    // Caso recursivo: calcular medio, comparar, y llamar recursivamente
-    //                 con el rango reducido.
-    // Precondición: el vector está ordenado.
-    (void)v;
-    (void)buscado;
-    (void)izq;
-    (void)der;
-    return -1;
+    // Caso base: no quedan elementos para buscar
+    if (izq > der)
+        return -1;
+
+    // Calcular la posición del medio
+    int medio = (izq + der) / 2;
+
+    // Encontramos el elemento
+    if (v[medio] == buscado)
+        return medio;
+
+    // Buscamos en la mitad izquierda
+    if (buscado < v[medio])
+        return busquedaBinariaRec(v, buscado, izq, medio - 1);
+
+    // Buscamos en la mitad derecha
+    return busquedaBinariaRec(v, buscado, medio + 1, der);
 }
 
 // ============================================================================
