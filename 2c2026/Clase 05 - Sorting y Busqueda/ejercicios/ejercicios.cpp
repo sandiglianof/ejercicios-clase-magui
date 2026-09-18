@@ -67,15 +67,14 @@ int busquedaBinaria(const std::vector<int>& v, int buscado)
     int izq = 0;
     int der = v.size() - 1;
 
-    while (izq <= der)
-    {
+    while (izq <= der){
         int medio = izq + (der - izq) / 2;
         if (v[medio] == buscado)
             return medio;
-        if (buscado < v[medio])
-            der = medio - 1;
-        else
+        else if (v[medio] < buscado)
             izq = medio + 1;
+        else
+            der = medio - 1;
     }
 
     return -1;
@@ -89,18 +88,19 @@ int busquedaBinariaRec(const std::vector<int>& v, int buscado, int izq, int der)
         return -1;
 
     // Calcular la posición del medio
-    int medio = (izq + der) / 2;
+    int medio = izq + (der - izq) / 2;
 
     // Encontramos el elemento
     if (v[medio] == buscado)
         return medio;
 
-    // Buscamos en la mitad izquierda
-    if (buscado < v[medio])
-        return busquedaBinariaRec(v, buscado, izq, medio - 1);
-
     // Buscamos en la mitad derecha
-    return busquedaBinariaRec(v, buscado, medio + 1, der);
+    else if (v[medio] < buscado)
+        return busquedaBinariaRec(v, buscado, medio + 1, der);
+
+    // Buscamos en la mitad izquierda
+    else
+        return busquedaBinariaRec(v, buscado, izq, medio - 1);
 }
 
 // ============================================================================
